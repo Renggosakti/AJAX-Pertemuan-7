@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dash-wrap{max-width:1024px;margin:28px auto;padding:18px}
+    .actions{display:flex;gap:12px;margin-top:12px}
+    .secondary{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:10px;border-radius:10px}
+  </style>
+</head>
+<body>
+  <main class="dash-wrap">
+    <h1 id="welcome">Selamat datang!</h1>
+    <p class="muted" id="emailLine"></p>
+
+    <div class="actions">
+      <button id="logout" class="secondary">Logout</button>
+      <button id="clearData" class="secondary">Reset data demo</button>
+    </div>
+
+    <section style="margin-top:18px;padding:16px;border-radius:12px;background:#fff;">
+      <h3>Informasi Akun</h3>
+      <ul id="infoList" style="color:#374151"></ul>
+    </section>
+  </main>
+
+<script>
+  // read logged email from sessionStorage (set after login)
+  const logged = sessionStorage.getItem('demo_logged');
+  if (!logged) {
+    // if not logged, redirect back to login
+    location.href = 'index.html';
+  } else {
+    document.getElementById('welcome').textContent = `Selamat datang, ${logged.split('@')[0]}!`;
+    document.getElementById('emailLine').textContent = logged;
+
+    // fetch users.json to display details (optional)
+    fetch('users.json').then(r=>r.json()).then(users=>{
+      const u = users[logged.toLowerCase()];
+      const info = document.getElementById('infoList');
+      if (u) {
+        info.innerHTML = `<li>Email: ${u.email}</li>
+                          <li>Terdaftar: ${u.created_at || '-'}</li>
+                          <li>Metode: ${u.via || 'local'}</li>`;
+      } else {
+        info.innerHTML = '<li>Tidak ada data akun (demo)</li>';
+      }
+    }).catch(()=>{});
+
+    document.getElementById('logout').addEventListener('click', ()=>{
+      sessionStorage.removeItem('demo_logged');
+      location.href = 'index.html';
+    });
+
+    document.getElementById('clearData').addEventListener('click', ()=>{
+      if (confirm('Reset semua data demo (users.json)?')) {
+        // call server to reset users.json by registering with special action is allowed?
+        // Instead simpler: request server.php?action=clear via POST
+        fetch('server.php?action=clear',{method:'POST'}).then(()=>{ alert('Data demo direset'); location.reload(); }).catch(()=>alert('Gagal'));
+      }
+    });
+  }
+</script>
+</body>
+</html>

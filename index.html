@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portal Login — Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <main class="container">
+    <section class="left">
+      <h1>Deskripsi & Konsep Implementasi</h1>
+      <p class="lead">
+        Demo ini menunjukkan submit form tanpa reload menggunakan AJAX (jQuery) + PHP.
+        Fitur: register & login (simulasi), remember-me, show/hide password, loading spinner,
+        pesan error bergetar, dan redirect otomatis ke dashboard.
+      </p>
+
+      <h3>Alur singkat</h3>
+      <ol>
+        <li>Daftar (register) mengirim request AJAX ke server.php?action=register.</li>
+        <li>Login mengirim request AJAX ke server.php?action=login.</li>
+        <li>Server memeriksa users.json dan mengembalikan JSON (status + message).</li>
+        <li>Frontend menampilkan pesan, menyimpan remembered email, dan redirect ke dashboard.</li>
+      </ol>
+      <p class="muted">Catatan: penyimpanan pengguna hanya lewat file JSON (demo).</p>
+    </section>
+
+    <aside class="card">
+      <div class="brand">
+        <div class="logo">P</div>
+        <div>
+          <h2>Portal Demo</h2>
+          <div class="muted">Masuk atau daftar untuk mencoba</div>
+        </div>
+      </div>
+
+      <!-- forms switch -->
+      <div class="form-switch">
+        <button id="showLogin" class="small-btn active">Login</button>
+        <button id="showRegister" class="small-btn">Daftar</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="form" autocomplete="off">
+        <label>Email</label>
+        <input id="login_email" type="email" placeholder="name@domain.com" required>
+
+        <label>Password</label>
+        <div class="pw-row">
+          <input id="login_password" type="password" placeholder="••••••••" required>
+          <button type="button" id="login_toggle" class="icon">👁️</button>
+        </div>
+
+        <div class="row">
+          <label><input id="remember" type="checkbox"> Ingat saya</label>
+          <a id="forgot" href="#" class="link">Lupa password?</a>
+        </div>
+
+        <button id="loginBtn" class="btn primary" type="submit">Masuk</button>
+
+        <div class="or"><span>atau</span></div>
+        <button id="googleLogin" type="button" class="btn google">Masuk dengan Google (Demo)</button>
+
+        <div id="loginStatus" class="status"></div>
+        <div id="loginLoader" class="loader" aria-hidden="true"></div>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" class="form hidden" autocomplete="off">
+        <label>Email</label>
+        <input id="reg_email" type="email" placeholder="name@domain.com" required>
+
+        <label>Password</label>
+        <div class="pw-row">
+          <input id="reg_password" type="password" placeholder="Buat password" required>
+          <button type="button" id="reg_toggle" class="icon">👁️</button>
+        </div>
+
+        <button id="registerBtn" class="btn primary" type="submit">Daftar</button>
+        <div id="regStatus" class="status"></div>
+        <div id="regLoader" class="loader" aria-hidden="true"></div>
+      </form>
+
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
