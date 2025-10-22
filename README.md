@@ -178,9 +178,9 @@ Cocok digunakan sebagai **demo sistem autentikasi** atau **pembelajaran AJAX das
 
 ## 🔗 Link Terkait
 
-* 🌍 **GitHub Repository:** [https://github.com/aryarangga/antargo-login-simulasi](https://github.com/aryarangga/antargo-login-simulasi)
+* 🌍 **GitHub Repository:** [https://github.com/aryarangga/antargo-login-simulasi](https://github.com/Renggosakti/AJAX-Pertemuan-7/edit/main/README.md)
 * 💻 **Live Demo (Local):** [http://localhost:8000](http://localhost:8000)
-* 🌐 **Live Demo (GitHub Pages):** [https://aryarangga.github.io/antargo-login-simulasi](https://aryarangga.github.io/antargo-login-simulasi)
+* 🌐 **Live Demo (GitHub Pages):** [https://aryarangga.github.io/antargo-login-simulasi](https://renggosakti.github.io/AJAX-Pertemuan-7/)
 
 ---
 
